@@ -9,7 +9,7 @@ if __name__ == '__main__':
     # serverAppium.start_server()
 
     testVideo.launch_appium_driver()
-    # testVideo.action_click()
+    testVideo.action_click()
 
     thread1 = threading.Thread(target=testVideo.play_video)
     thread3 = threading.Thread(target=listen.listen)
