@@ -99,7 +99,6 @@ def pauseVideo():
     # time.sleep(5)
     driver.back()
     # driver.back()
-    # driver.back()
 
 def stop_record():
     recording_raw = driver.stop_recording_screen()
