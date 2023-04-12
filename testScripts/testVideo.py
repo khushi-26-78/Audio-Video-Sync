@@ -36,22 +36,22 @@ def start_record():
 
 # Opening the VLC player from menu list
 def action_click():
-    actions = ActionChains(driver)
-    actions.w3c_actions = ActionBuilder(driver, mouse=PointerInput(interaction.POINTER_TOUCH, "touch"))
-    actions.w3c_actions.pointer_action.move_to_location(173, 156)
-    actions.w3c_actions.pointer_action.pointer_down()
-    actions.w3c_actions.pointer_action.pause(0.1)
-    actions.w3c_actions.pointer_action.release()
-    actions.perform()
-
     # actions = ActionChains(driver)
     # actions.w3c_actions = ActionBuilder(driver, mouse=PointerInput(interaction.POINTER_TOUCH, "touch"))
-    # actions.w3c_actions.pointer_action.move_to_location(542, 1598)
+    # actions.w3c_actions.pointer_action.move_to_location(173, 156)
     # actions.w3c_actions.pointer_action.pointer_down()
-    # actions.w3c_actions.pointer_action.move_to_location(549, 763)
+    # actions.w3c_actions.pointer_action.pause(0.1)
     # actions.w3c_actions.pointer_action.release()
     # actions.perform()
-    # driver.find_element(AppiumBy.XPATH, videoLocators.vlc_app()).click()
+
+    actions = ActionChains(driver)
+    actions.w3c_actions = ActionBuilder(driver, mouse=PointerInput(interaction.POINTER_TOUCH, "touch"))
+    actions.w3c_actions.pointer_action.move_to_location(542, 1598)
+    actions.w3c_actions.pointer_action.pointer_down()
+    actions.w3c_actions.pointer_action.move_to_location(549, 763)
+    actions.w3c_actions.pointer_action.release()
+    actions.perform()
+    driver.find_element(AppiumBy.XPATH, videoLocators.vlc_app()).click()
     # driver.start_activity("org.videolan.vlc", "org.videolan.vlc.gui.video.VideoPlayerActivity")
 
 def video():
