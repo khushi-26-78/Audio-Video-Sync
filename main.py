@@ -11,27 +11,28 @@ if __name__ == '__main__':
     testVideo.launch_appium_driver()
     testVideo.action_click()
 
-    thread1 = threading.Thread(target=testVideo.play_video)
-    thread3 = threading.Thread(target=listen.listen)
+    for i in range(1,11):
+        thread1 = threading.Thread(target=testVideo.three)
+        thread3 = threading.Thread(target=listen.listen)
 
-    thread1.start()
-    thread3.start()
+        thread1.start()
+        thread3.start()
 
+        testVideo.timeSleep()
 
-    testVideo.timeSleep()
+        thread5 = threading.Thread(target=testVideo.pauseVideo)
+        #
+        thread5.start()
+        #
+        thread5.join()
+        thread1.join()
+        thread3.join()
 
-
-    thread5 = threading.Thread(target=testVideo.pauseVideo)
-    #
-    thread5.start()
-    #
-    thread5.join()
-    thread1.join()
-    thread3.join()
-
-    testVideo.pauseVideo()
+            # testVideo.pauseVideo()
+        print(testVideo.lst)
+        print(listen.lst1)
+        print("....//iteration completed//....", i)
     testVideo.close_app()
-    print(testVideo.lst)
     # except:
     #     print("There is an error in code!!")
     # finally:

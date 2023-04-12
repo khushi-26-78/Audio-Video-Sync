@@ -10,6 +10,9 @@ from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium.webdriver.common.actions.pointer_input import PointerInput
 import datetime
 from datetime import datetime
+
+from selenium.webdriver.support.wait import WebDriverWait
+
 from reuseable.configs import MobileConfig
 from locators import videoLocators
 
@@ -26,33 +29,50 @@ def launch_appium_driver():
 # Starting screen recording
 def start_record():
     driver.start_recording_screen()
-    time_now = datetime.now()
-    a_current_time = time_now.time()
+    #time_now = datetime.now()
+    a_current_time = time.time()
     lst.append(a_current_time)
-    print('Timestamp of Record:', a_current_time)
+    print('Timestamp of Record.....:', a_current_time)
 
 # Opening the VLC player from menu list
 def action_click():
     actions = ActionChains(driver)
     actions.w3c_actions = ActionBuilder(driver, mouse=PointerInput(interaction.POINTER_TOUCH, "touch"))
-    actions.w3c_actions.pointer_action.move_to_location(542, 1598)
+    actions.w3c_actions.pointer_action.move_to_location(173, 156)
     actions.w3c_actions.pointer_action.pointer_down()
-    actions.w3c_actions.pointer_action.move_to_location(549, 763)
+    actions.w3c_actions.pointer_action.pause(0.1)
     actions.w3c_actions.pointer_action.release()
     actions.perform()
-    driver.find_element(AppiumBy.XPATH, videoLocators.vlc_app()).click()
+
+    # actions = ActionChains(driver)
+    # actions.w3c_actions = ActionBuilder(driver, mouse=PointerInput(interaction.POINTER_TOUCH, "touch"))
+    # actions.w3c_actions.pointer_action.move_to_location(542, 1598)
+    # actions.w3c_actions.pointer_action.pointer_down()
+    # actions.w3c_actions.pointer_action.move_to_location(549, 763)
+    # actions.w3c_actions.pointer_action.release()
+    # actions.perform()
+    # driver.find_element(AppiumBy.XPATH, videoLocators.vlc_app()).click()
     # driver.start_activity("org.videolan.vlc", "org.videolan.vlc.gui.video.VideoPlayerActivity")
 
+def video():
+    actions = ActionChains(driver)
+    actions.w3c_actions = ActionBuilder(driver, mouse=PointerInput(interaction.POINTER_TOUCH, "touch"))
+    actions.w3c_actions.pointer_action.move_to_location(124, 1719)
+    actions.w3c_actions.pointer_action.pointer_down()
+    actions.w3c_actions.pointer_action.pause(0.1)
+    actions.w3c_actions.pointer_action.release()
+    actions.perform()
+    #time.sleep(1)
 
-# Playing video in VLC player
-def play_video():
-    driver.find_element(AppiumBy.XPATH, videoLocators.video()).click()
-    # driver.find_element(AppiumBy.XPATH, "//android.widget.TextView[@text='Manzar_Hai_Yeh_Naya']").click()
-    time_now = datetime.now()
-    b_current_time = time_now.time()
-    lst.append(b_current_time)
-    print('Timestamp of play:', b_current_time)
 
+def three():
+    driver.find_element(AppiumBy.XPATH, '(//android.widget.ImageView[@content-desc="More Actions"])[1]').click()
+    #time.sleep(1)
+    driver.find_element(AppiumBy.XPATH, '//android.widget.TextView[@text="Play from start"]').click()
+    #time_now = datetime.now()
+    play_time = time.time()
+    lst.append(play_time)
+    print('Timestamp of play...:', play_time)
 def timeSleep():
     time.sleep(10)
 
@@ -72,14 +92,14 @@ def pauseVideo():
     actions.w3c_actions.pointer_action.pause(0.1)
     actions.w3c_actions.pointer_action.release()
     actions.perform()
-    time_now = datetime.now()
-    c_current_time = time_now.time()
-    lst.append(c_current_time)
-    print('Timestamp of Pause:', c_current_time)
+    #time_now = datetime.now()
+    pause_time = time.time()
+    lst.append(pause_time)
+    print('Timestamp of Pause:', pause_time)
     # time.sleep(5)
     driver.back()
-    driver.back()
-    driver.back()
+    # driver.back()
+    # driver.back()
 
 def stop_record():
     recording_raw = driver.stop_recording_screen()
