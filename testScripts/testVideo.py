@@ -8,30 +8,28 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.actions import interaction
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium.webdriver.common.actions.pointer_input import PointerInput
-import datetime
-from datetime import datetime
 from reuseable.configs import MobileConfig
 from locators import videoLocators
 
 global dt
 global time_now
-lst=[]
+dict = {}
+
+
 # Launching appium driver here
 def launch_appium_driver():
     global driver
     driver = webdriver.Remote("http://localhost:4723/wd/hub", MobileConfig.desired_caps)
     driver.implicitly_wait(10)
     driver.start_activity("org.videolan.vlc", "org.videolan.vlc.StartActivity")
-    print("After start")
-    # driver.start_activity("org.videolan.vlc", "org.videolan.vlc.gui.MaintActivity")
+
 
 # Starting screen recording
 def start_record():
     driver.start_recording_screen()
-    time_now = datetime.now()
-    a_current_time = time_now.time()
-    lst.append(a_current_time)
+    a_current_time = time.time()
     print('Timestamp of Record:', a_current_time)
+
 
 # Opening the VLC player from menu list
 def action_click():
@@ -43,20 +41,19 @@ def action_click():
     actions.w3c_actions.pointer_action.release()
     actions.perform()
     driver.find_element(AppiumBy.XPATH, videoLocators.vlc_app()).click()
-    # driver.start_activity("org.videolan.vlc", "org.videolan.vlc.gui.video.VideoPlayerActivity")
 
 
 # Playing video in VLC player
 def play_video():
     driver.find_element(AppiumBy.XPATH, videoLocators.video()).click()
-    # driver.find_element(AppiumBy.XPATH, "//android.widget.TextView[@text='Manzar_Hai_Yeh_Naya']").click()
-    time_now = datetime.now()
-    b_current_time = time_now.time()
-    lst.append(b_current_time)
+    b_current_time = time.time()
+    dict["Video_play"] = b_current_time
     print('Timestamp of play:', b_current_time)
+
 
 def timeSleep():
     time.sleep(10)
+
 
 def pauseVideo():
     actions = ActionChains(driver)
@@ -74,21 +71,16 @@ def pauseVideo():
     actions.w3c_actions.pointer_action.pause(0.1)
     actions.w3c_actions.pointer_action.release()
     actions.perform()
-    time_now = datetime.now()
-    c_current_time = time_now.time()
-    lst.append(c_current_time)
+    c_current_time = time.time()
+    dict["Video_pause"]=c_current_time
     print('Timestamp of Pause:', c_current_time)
-    # time.sleep(5)
-    driver.back()
-    driver.back()
+
     driver.back()
 
 def stop_record():
     recording_raw = driver.stop_recording_screen()
 
-    time_now = datetime.now()
-    d_current_time = time_now.time()
-    lst.append(d_current_time)
+    d_current_time = time.time()
     print('Timestamp of Stop_record:', d_current_time)
     video_name = "Recording" + driver.current_activity
     filepath = os.path.join("C:/Users/Anuj/PycharmProjects/Project(video-audio)/Recording/", video_name + ".mp4")
@@ -97,7 +89,5 @@ def stop_record():
         videoRecorder.write(base64.b64decode(recording_raw))
 
 
-
 def close_app():
     driver.quit()
-
