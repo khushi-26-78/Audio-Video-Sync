@@ -21,7 +21,9 @@ def launch_appium_driver():
     global driver
     driver = webdriver.Remote("http://localhost:4723/wd/hub", MobileConfig.desired_caps)
     driver.implicitly_wait(10)
-    # driver.start_activity("org.videolan.vlc", "org.videolan.vlc.gui.MainActivity")
+    driver.start_activity("org.videolan.vlc", "org.videolan.vlc.StartActivity")
+    print("After start")
+    # driver.start_activity("org.videolan.vlc", "org.videolan.vlc.gui.MaintActivity")
 
 # Starting screen recording
 def start_record():

@@ -1,15 +1,17 @@
 import threading
-import pandas as pd
 from testScripts import testVideo
 from reuseable import serverAppium
 from audio import listen
+# import
 
 if __name__ == '__main__':
     # try:
-    # serverAppium.start_server()
-
-    testVideo.launch_appium_driver()
-    testVideo.action_click()
+    serverAppium.start_server()
+    try:
+        testVideo.launch_appium_driver()
+    except:
+        print("error")
+    # testVideo.action_click()
 
     thread1 = threading.Thread(target=testVideo.play_video)
     thread3 = threading.Thread(target=listen.listen)
@@ -35,4 +37,4 @@ if __name__ == '__main__':
     # except:
     #     print("There is an error in code!!")
     # finally:
-    # serverAppium.stop_server()
+    serverAppium.stop_server()
