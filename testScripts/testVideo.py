@@ -47,7 +47,7 @@ def action_click():
 def play_video():
     driver.find_element(AppiumBy.XPATH, videoLocators.video()).click()
     b_current_time = time.time()
-    dict["Video_play"] = b_current_time
+    dict["Video_play"] = str(b_current_time)[6:]
     print('Timestamp of play:', b_current_time)
 
 
@@ -72,7 +72,7 @@ def pauseVideo():
     actions.w3c_actions.pointer_action.release()
     actions.perform()
     c_current_time = time.time()
-    dict["Video_pause"]=c_current_time
+    dict["Video_pause"]=str(c_current_time)[6:]
     print('Timestamp of Pause:', c_current_time)
 
     driver.back()
