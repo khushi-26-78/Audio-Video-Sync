@@ -19,12 +19,12 @@ def listen():
         # print("Speak something...", datetime.datetime.now())
         # listen for audio input from the microphone
         x_current_time = time.time()
-        testVideo.dict["Listen_start"] = x_current_time
+        testVideo.dict["Listen_start"] = str(x_current_time)[6:]
         print("Listen Started....", x_current_time)
         print("------------------------------------------")
         audio_data_my = r.listen(source)
         y_current_time = time.time()
-        testVideo.dict["Listen_stop"] = y_current_time
+        testVideo.dict["Listen_stop"] = str(y_current_time)[6:]
         print("Listen Stopped....", y_current_time)
         print("------------------------------------------")
     # return audio_data_my
