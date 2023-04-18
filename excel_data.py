@@ -1,5 +1,4 @@
 from testScripts import testVideo
-from audio import listen
 import pandas as pd
 dict_excel = {'Listen_start': [], 'Video_play': [], 'flash detection': [], 'Video_pause': [], 'Listen_stop': [],
               'start_diff': []}
