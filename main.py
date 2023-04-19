@@ -15,6 +15,8 @@ if __name__ == '__main__':
         testVideo.launch_appium_driver()
     except:
         pass
+    wb,ws,header=excel_data.Starting_workbook()
+    ex=[]
     for i in range(0, 3):
         thread1 = threading.Thread(target=testVideo.play_video)
         thread1.start()
@@ -32,14 +34,13 @@ if __name__ == '__main__':
         thread1.join()
         thread3.join()
         thread2.join()
-        print(testVideo.dict)
-        excel_data.difference()
+        # print(testVideo.dict)
+        ex.append(excel_data.appending(testVideo.dict))
 
         print("....//iteration completed//....", i+1)
     testVideo.close_app()
-    excel_data.excel_disp()
-    # for k in range(len(dict_excel)):
-    # dict_excel['Diff_start']=dict_excel['Listen_start']-dict_excel['Video_play']
+    excel_data.creating_table(ws,ex,header)
+    excel_data.close_workbook(wb)
 
 # except:
 #     print("There is an error in code!!")
