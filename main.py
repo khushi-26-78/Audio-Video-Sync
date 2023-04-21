@@ -30,8 +30,8 @@ if __name__ == '__main__':
         thread5.start()
         thread5.join()
         thread1.join()
-        thread3.join()
         thread2.join()
+        thread3.join()
         print(testVideo.dict)
         excel_data.difference()
 
